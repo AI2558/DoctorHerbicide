@@ -8,8 +8,9 @@
 		color: black;
 	}
 </style>
-<script>
+<script type="text/javascript">
 	$(document).ready(function() {
+		$('[data-toggle="tooltip"]').tooltip();
 		$("select").imagepicker({
 			show_label : true
 		});
@@ -28,14 +29,39 @@
 			$(this).removeClass('transition');
 		});
 	});
+
+	$(function() {
+		$("#weed_select").change(function() {
+			var studentNmae = $('option:selected', this).attr('weed_name');
+			$('#name').val(studentNmae);
+		});
+	});
 </script>
 
 <div class="container">
 	<!-- Main component for a primary marketing message or call to action -->
-	<?php if($anti != null) { ?>
-	<div class="jumbotron text-center">
-		<h2 class="well"><?= $anti[0]['weed_name']; ?></h2>
-		<img class="img-thumbnail" src="<?= base_url('assets/images/' . $anti[0]['weed_name'] . '.png') ?>" width='300' height='300' />
+	<?php if($information != null || $anti!= null) { ?>
+	<div class="jumbotron">
+		<div class=" text-center">
+			<h2 class="well"><?= $information[0]['CommonName']; ?></h2>
+			<img class="img-thumbnail" src="<?= base_url('assets') . '/' . $information[0]['path_image'] ?>" width='300' height='300' />
+		</div>
+		<br />		
+		<br />
+		<div class="about col-xs-12 col-sm-12 col-md-6 col-lg-6">
+			<h1>วิธีป้องกัน</h1>
+      <?php $x = explode(".", $information[0]['Prevention']); ?>
+      <?php for($i=1; $i<sizeof($x); $i++)  { ?>
+      <p><?= $i ?>. <?= $x[$i] ?></p>
+      <?php } ?>	</div>
+		<div class="contact col-xs-12 col-sm-12 col-md-6 col-lg-6">
+			<h1>ระบบนิเวศ</h1>
+			<?php $x = explode("-", $information[0]['Ecology']); ?>
+			<?php for($i=1; $i<sizeof($x); $i++)  { ?>
+			<p>- <?= $x[$i] ?></p>
+			<?php } ?>
+		</div>
+		
 		<br />		
 		<br />
 		<table id="example" class="display text-center table table-hover" cellspacing="0" border="1" width="100%" style="background-color: #333222">
@@ -44,19 +70,17 @@
                 <th class="text-center">รูปภาพ</th>
                 <th class="text-center">ชื่อการค้า</th>
                 <th class="text-center">ชื่อสามัญ</th>
-                <th class="text-center">กลไกการเข้าทำลายพืช</th>
             </tr>
         </thead>
         <tbody>
-        	<?php foreach ($anti as $r) { ?>
+        	<?php if($anti != null ) { foreach ($anti as $r) { ?>
             <tr>
             	<!-- <td><?= $r['group'] ?></td> -->
-            	<td><img onerror="this.src='http://localhost/weed/assets/images/pill/no_image.png'" class="img-responsive img-rounded center-block img-zoom" src='<?= base_url("assets/images/pill/" . $r["trade_name"]) . ".png" ?>' /></td>
+            	<td><img onerror="this.src='http://10.2.23.154/weed/assets/images/pill/no_image.png'" class="img-responsive img-rounded center-block img-zoom" src='<?= base_url("assets/images/pill/" . $r["trade_name"]) . ".png" ?>' /></td>
             	<td style="vertical-align:middle"><?= $r['trade_name'] ?></td>
             	<td style="vertical-align:middle"><?= $r['common_name'] ?></td>
-                <td style="vertical-align:middle"><?= $r['trick'] ?></td>
             </tr>
-            <?php } ?>
+            <?php }} ?>
        </tbody>
        </table>
 	</div>
@@ -66,21 +90,19 @@
 			<!-- <a href="#" onclick="document.location=this.id+'.html';return false;"><img data-img-src="<?= base_url('assets/images/หญ้าดอกขาว.png') ?>" alt="bottle" class="thumbnails" /></a> -->
 			<select id="weed_select" name="weed_select" class="image-picker show-html show-label">
 				<option value=""></option>
-				<option data-img-src="<?= base_url('assets/images/หญ้าดอกขาว.png') ?>" value="1" >หญ้าดอกขาว</option>
-				<option data-img-src="<?= base_url('assets/images/หญ้าข้าวนก.png') ?>" value="2" >หญ้าข้าวนก</option>
-				<option data-img-src="<?= base_url('assets/images/หญ้าแดง.png') ?>" value="3" >หญ้าแดง</option>
-				<option data-img-src="<?= base_url('assets/images/ข้าววัชพืช.png') ?>" value="4" >ข้าววัชพืช</option>
-				<option data-img-src="<?= base_url('assets/images/เทียนนา.png') ?>" value="5" >เทียนนา</option>
-				<option data-img-src="<?= base_url('assets/images/ผักปอดนา.png') ?>" value="6" >ผักปอดนา</option>
-				<option data-img-src="<?= base_url('assets/images/ขาเขียด.png') ?>" value="7" >ขาเขียด</option>
-				<option data-img-src="<?= base_url('assets/images/ตาลปัตรฤาษี.png') ?>" value="8" >ตาลปัตรฤาษี</option>
-				<option data-img-src="<?= base_url('assets/images/หนวดปลาดุก.png') ?>" value="9" >หนวดปลาดุก</option>
-				<option data-img-src="<?= base_url('assets/images/กกขนาก.png') ?>" value="10" >กกขนาก</option>
-				<option data-img-src="<?= base_url('assets/images/กกทราย.png') ?>" value="11" >กกทราย</option>
+				<?php 
+				$i=1;
+				foreach ($weed_name as $r) { 
+				?>
+				<option data-img-src="<?= base_url('assets') . '/' . $r['path_image'] ?>" weed_name="<?= $r['CommonName'] ?>" value="<?= $i ?>" ><?= $r['CommonName'] ?></option>
+				<?php
+				$i++;
+				}
+				?>
 			</select>
+			<input type='hidden' id="name" name="name" value=""/>
 			<button class="btn btn-primary btn-lg" type="submit" id="weed_submit" name="weed_submit">ยืนยัน</button>
 		</form>
 	</div>
-
 </div>
 

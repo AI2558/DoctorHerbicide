@@ -24,7 +24,10 @@ class Home extends CI_Controller {
 	}
 
 	public function index() {
+		$data["weed_name"] = $this -> home_model -> get_weed_name();
+		// print_r($data);
 		$data["anti"] = null;
+		$data["information"] = null;
 		$this -> load -> view('header');
 		$this -> load -> view("home_view", $data);
 		$this -> load -> view('footer');
@@ -32,9 +35,11 @@ class Home extends CI_Controller {
 
 	public function weed() {
 		//////////////////////////////////////////////////////////////////////////////////////
-		$weed = $this -> input -> post('weed_select');
-		$data["anti"] = $this -> home_model -> get_antiName($weed);
-		// print_r($data);
+		//$weed = $this -> input -> post('weed_select');
+		$name = $this -> input -> post('name');
+		$data["weed_name"] = $this -> home_model -> get_weed_name();
+		$data["anti"] = $this -> home_model -> get_antiName($name);
+		$data["information"] = $this -> home_model -> get_information($name);
 		$this -> load -> view('header');
 		$this -> load -> view("home_view", $data);
 		$this -> load -> view('footer');

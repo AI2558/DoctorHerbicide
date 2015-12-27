@@ -23,7 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<?= js_asset("image-picker.js"); ?>
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.css"/>
- 
+ 	
+ 		<script src="http://maps.googleapis.com/maps/api/js"></script>
 		<script type="text/javascript" src="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.js"></script>
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 		<script>
@@ -36,8 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<body>
 		<!-- Fixed navbar -->
 		<?php $page = $this -> session -> userdata('page'); ?>
-		<?php $citizen_id_session = $this -> session -> userdata('citizen_id_session'); ?>
-		<?php $url_api_value_session = $this -> session -> userdata('url_api_session'); ?>
+		<?php $name_session = $this -> session -> userdata('name_session'); ?>
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="container">
 				<div class="navbar-header">
@@ -52,23 +52,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
 						<li class="<?= (($page == 'home') ? 'active' : 'last'); ?>">
-							<a href="<?= base_url('home') ?>">หน้าแรก</a>
-						</li>
-						<li class="<?= (($page == 'home_oto') ? 'active' : 'last'); ?>">
-							<a href="<?= base_url('home_oto') ?>">หน้าแรก(Otology)</a>
+							<a href="<?= base_url('home') ?>">วัชพืช</a>
 						</li>
 						<li class="<?= (($page == 'medicine') ? 'active' : 'last'); ?>">
 							<a href="<?= base_url('medicine') ?>">ยาฆ่าวัชพืช</a>
 						</li>
+						<?php if($name_session != null) { ?>
 						<li class="<?= (($page == 'map') ? 'active' : 'last'); ?>">
 							<a href="<?= base_url('map') ?>">แผนที่</a>
 						</li>
+						<li class="<?= (($page == 'report') ? 'active' : 'last'); ?>">
+							<a href="<?= base_url('report') ?>">รายงานวัชพืช</a>
+						</li>
+						<?php } ?>
 						<li class="<?= (($page == 'about') ? 'active' : 'last'); ?>">
 							<a href="<?= base_url('about') ?>">เกี่ยวกับ</a>
 						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-	
+					<?php if($name_session == null) { ?>
+						<li class="<?= (($page == 'login') ? 'active' : 'last'); ?>">
+							<a href="<?= base_url('login') ?>">เข้าสู่ระบบ</a>
+						</li>
+					<?php } else { ?>
+						<li>
+							<p><?= $name_session ?></p>
+						</li>
+						<li class="<?= (($page == 'logout') ? 'active' : 'last'); ?>">
+							<a href="<?= base_url('login/logout') ?>">ออกจากระบบ</a>
+						</li>
+					<?php } ?>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>
