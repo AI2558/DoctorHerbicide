@@ -28,4 +28,33 @@ class Report_model extends CI_model {
 		}
 		return $weed;
 	}
+
+	function check_update($id) {
+		$this -> db -> from('report');
+		$this -> db -> where('citizen_id', $id);
+		$query = $this -> db -> get();
+		$id = Array();
+		foreach ($query->result_array() as $row) {
+			$id[] = $row;
+		}
+		return $id;
+	}
+
+	function insert_report($id, $report) {
+		$data = array(
+   		'citizen_id' => $id,
+   		'weed_id' => $report
+		);
+
+		$this->db->insert('report', $data); 
+	}
+
+	function update_report($id, $report) {
+		$data = array(
+   		'weed_id' => $report
+    );
+
+		$this-> db ->where('citizen_id', $id);
+		$this-> db ->update('report', $data); 
+	}
 }

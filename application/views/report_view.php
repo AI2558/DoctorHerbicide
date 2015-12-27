@@ -13,7 +13,7 @@
        }
        else {
             var newdiv = document.createElement('div');
-            newdiv.innerHTML = "<br /><select name='select" + i + "' class='form-control'><?php foreach ($weed as $r) { ?><option value='<?= $count ?>'><?= $r['CommonName'] ?></option><?php } ?></select>";
+            newdiv.innerHTML = "<br /><select name='select" + i + "' class='form-control'><?php $count=1; foreach ($weed as $r) { ?><option value='<?= $count ?>'><?= $r['CommonName'] ?></option><?php $count++; } ?></select>";
             document.getElementById(divName).appendChild(newdiv);
             counter++;
             i++;

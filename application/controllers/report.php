@@ -37,9 +37,24 @@ class Report extends CI_Controller {
 
 	public function save() {
 		$weed = $this -> input -> post();
+		$i = 0;
+		$len = count($weed);
+		$data = "";
 		foreach ($weed as $r) {
-			$data .= $r . ",";
+			$data .= $r;
+			if($i != $len - 1) {
+				$data .= ',';
+			}	
+			$i++;
 		}
-		print($data);
+
+		print_r($data);
+		$id_card = $this -> session -> userdata('id_card');
+		$check = $this -> report_model -> check_update($id_card);
+		if($check == null) {
+			$this -> report_model -> insert_report($id_card, $data);
+		} else {
+			$this -> report_model -> update_report($id_card, $data);
+		}
 	}
 }
