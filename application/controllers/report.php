@@ -26,12 +26,11 @@ class Report extends CI_Controller {
 	public function index() {
 	 	$id_card = $this -> session -> userdata('id_card');
 	 
+	 	$data['show_table'] = $this -> report_model -> get_table();
 		$data['id'] = $this -> report_model -> get_farmer($id_card);
 		$data['weed'] = $this -> report_model -> get_weed();
-
-		// print_r($data['weed']);
 		$this -> load -> view('header');
-		$this -> load -> view("report_view", $data);
+		$this -> load -> view('report_view', $data);
 		$this -> load -> view('footer');
 	}
 
@@ -39,22 +38,14 @@ class Report extends CI_Controller {
 		$weed = $this -> input -> post();
 		$i = 0;
 		$len = count($weed);
-		$data = "";
-		foreach ($weed as $r) {
-			$data .= $r;
-			if($i != $len - 1) {
-				$data .= ',';
-			}	
-			$i++;
-		}
 
-		print_r($data);
 		$id_card = $this -> session -> userdata('id_card');
-		$check = $this -> report_model -> check_update($id_card);
-		if($check == null) {
-			$this -> report_model -> insert_report($id_card, $data);
-		} else {
-			$this -> report_model -> update_report($id_card, $data);
+		$province = $this -> session -> userdata('province_session');
+		$this -> report_model -> delete_report($id_card);
+
+		foreach ($weed as $r) {
+			$this -> report_model -> insert_report($id_card, $r, $province);
 		}
+		redirect(base_url("report"));
 	}
 }

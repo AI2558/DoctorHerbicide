@@ -65,24 +65,24 @@
 		<br />		
 		<br />
 		<table id="example" class="display text-center table table-hover" cellspacing="0" border="1" width="100%" style="background-color: #333222">
-        <thead>
-            <tr>
-                <th class="text-center">รูปภาพ</th>
-                <th class="text-center">ชื่อการค้า</th>
-                <th class="text-center">ชื่อสามัญ</th>
-            </tr>
-        </thead>
-        <tbody>
-        	<?php if($anti != null ) { foreach ($anti as $r) { ?>
-            <tr>
-            	<!-- <td><?= $r['group'] ?></td> -->
-            	<td><img onerror="this.src='http://10.2.23.154/weed/assets/images/pill/no_image.png'" class="img-responsive img-rounded center-block img-zoom" src='<?= base_url("assets/images/pill/" . $r["trade_name"]) . ".png" ?>' /></td>
-            	<td style="vertical-align:middle"><?= $r['trade_name'] ?></td>
-            	<td style="vertical-align:middle"><?= $r['common_name'] ?></td>
-            </tr>
-            <?php }} ?>
-       </tbody>
-       </table>
+      <thead>
+        <tr>
+            <th class="text-center">รูปภาพ</th>
+            <th class="text-center">ชื่อการค้า</th>
+            <th class="text-center">ชื่อสามัญ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php if($anti != null ) { foreach ($anti as $r) { ?>
+          <tr>
+          	<!-- <td><?= $r['group'] ?></td> -->
+          	<td><img onerror="this.src='http://10.2.23.154/weed/assets/images/pill/no_image.png'" class="img-responsive img-rounded center-block img-zoom" src='<?= base_url("assets/images/pill/" . $r["trade_name"]) . ".png" ?>' /></td>
+          	<td style="vertical-align:middle"><?= $r['trade_name'] ?></td>
+          	<td style="vertical-align:middle"><?= $r['common_name'] ?></td>
+          </tr>
+        <?php }} ?>
+      </tbody>
+    </table>
 	</div>
 	<?php } ?>
 	<div class="jumbotron text-center">

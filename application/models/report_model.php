@@ -29,32 +29,41 @@ class Report_model extends CI_model {
 		return $weed;
 	}
 
-	function check_update($id) {
-		$this -> db -> from('report');
-		$this -> db -> where('citizen_id', $id);
-		$query = $this -> db -> get();
-		$id = Array();
-		foreach ($query->result_array() as $row) {
-			$id[] = $row;
-		}
-		return $id;
-	}
-
-	function insert_report($id, $report) {
+	function insert_report($id, $weed_name, $province) {
 		$data = array(
    		'citizen_id' => $id,
-   		'weed_id' => $report
+   		'province' => $province,
+   		'weed_name' => $weed_name,
+   		'count' => 1
 		);
 
 		$this->db->insert('report', $data); 
 	}
 
-	function update_report($id, $report) {
-		$data = array(
-   		'weed_id' => $report
-    );
+	function delete_report($id) {
+		$this->db->where('citizen_id', $id);
+		$this->db->delete('report'); 
+	}
 
-		$this-> db ->where('citizen_id', $id);
-		$this-> db ->update('report', $data); 
+	function get_table() {
+		$this -> db -> select('citizen_id, province, weed_name');
+		$this -> db -> select_sum('count');
+		$this -> db -> from('report');
+		$this -> db -> group_by('province, weed_name');
+		$query = $this -> db -> get();
+		foreach ($query->result_array() as $row) {
+			$table[] = $row;
+		}
+		return $table;
+	} 
+
+	function get_province($id) {
+		$this -> db -> from('farmer');
+		$this -> db -> where('citizen_id', $id);
+		$query = $this -> db -> get();
+		foreach ($query->result_array() as $row) {
+			$farmer[] = $row;
+		}
+		return $farmer[0]['province'];
 	}
 }

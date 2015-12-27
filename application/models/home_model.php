@@ -10,7 +10,6 @@ class Home_model extends CI_model {
 	}
 
 	function get_antiName($weed_name) {
-		//$this -> db -> select('id, group');
 		$this -> db -> from('weed_resistance');
 		$this -> db -> join('weed_name', 'weed_name.id = weed_resistance.weed_id');
 		$this -> db -> where('weed_name.weed_name', $weed_name);
@@ -24,11 +23,9 @@ class Home_model extends CI_model {
 	}
 	
 	function get_information($weed_name) {
-		//$this -> db -> select('id, group');
 		$this -> db -> from('t_weed');
 		$this -> db -> join('t_weed_image', 't_weed.weed_id = t_weed_image.weed_id');
 		$this -> db -> where('t_weed.CommonName', $weed_name);
-		// $this -> db -> group_by('group');
 		$query = $this -> db -> get();
 		$information = null;
 		foreach ($query->result_array() as $row) {
