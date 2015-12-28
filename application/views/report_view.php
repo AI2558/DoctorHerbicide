@@ -27,12 +27,12 @@
 <div class="container">
 	<div class="jumbotron">
   <h1 class="text-center">วัชพืชที่พบ<small>ในแต่ละจังหวัด</small></h1><br />
-    <table id="example" class="display text-center table table-hover" cellspacing="0" border="1" width="100%" style="background-color: #333222">
+    <table id="example" class="display text-center table table-hover" cellspacing="0" border="1" width="100%" style="background-color: #AAAAAA">
       <thead>
         <tr>
             <th class="text-center">จังหวัด</th>
             <th class="text-center">วัชพืชที่พบ</th>
-            <th class="text-center">จำนวน(ราย)</th>
+            <th class="text-center">จำนวน(คน)</th>
         </tr>
       </thead>
       <tbody>

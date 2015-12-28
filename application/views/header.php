@@ -61,10 +61,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<li class="<?= (($page == 'medicine') ? 'active' : 'last'); ?>">
 							<a href="<?= base_url('medicine') ?>">ยาฆ่าวัชพืช</a>
 						</li>
-						<?php if($name_session != null) { ?>
-						<li class="<?= (($page == 'map') ? 'active' : 'last'); ?>">
-							<a href="<?= base_url('map') ?>">แผนที่</a>
+						<li class="<?= (($page == 'store') ? 'active' : 'last'); ?>">
+							<a href="<?= base_url('store') ?>">ตัวแทนจำหน่าย</a>
 						</li>
+						<?php if($name_session != null) { ?>
 						<li class="<?= (($page == 'report') ? 'active' : 'last'); ?>">
 							<a href="<?= base_url('report') ?>">รายงานวัชพืช</a>
 						</li>

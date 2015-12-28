@@ -66,4 +66,14 @@ class Report_model extends CI_model {
 		}
 		return $farmer[0]['province'];
 	}
+
+	public function get_farmer_all(){ 
+		$this -> db -> from('report');
+		$this -> db -> group_by('citizen_id');
+		$query = $this -> db -> get();
+		foreach ($query->result_array() as $row) {
+			$farmer[] = $row;
+		}
+		return $farmer;
+	}
 }
