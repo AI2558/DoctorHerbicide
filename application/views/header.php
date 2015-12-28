@@ -53,7 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<a class="navbar-brand" href="#">หมอยาวัชพืช</a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
-				<?php	/*
+				
 					<ul class="nav navbar-nav">
 						<li class="<?= (($page == 'home') ? 'active' : 'last'); ?>">
 							<a href="<?= base_url('home') ?>">วัชพืช</a>
@@ -73,7 +73,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<a href="<?= base_url('about') ?>">เกี่ยวกับ</a>
 						</li>
 					</ul>
-					*/ ?>
+					
 					<ul class="nav navbar-nav navbar-right">
 					<?php if($name_session == null) { ?>
 						<li class="<?= (($page == 'login') ? 'active' : 'last'); ?>">
@@ -81,7 +81,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</li>
 					<?php } else { ?>
 						<li>
-							<p><?= $name_session ?></p>
+							<p class="navbar-text">คุณ<?= $name_session ?></p>
 						</li>
 						<li class="<?= (($page == 'logout') ? 'active' : 'last'); ?>">
 							<a href="<?= base_url('login/logout') ?>">ออกจากระบบ</a>
