@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<head>
 
 		<meta charset="utf-8">
-		<title>Weed</title>
+		<title>หมอยาวัชพืช</title>
 
 		<!-- Bootstrap core CSS -->
 		<?= css_asset('lavish-bootstrap.css'); ?>
@@ -21,6 +21,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<?= js_asset("bower_components/jquery/dist/jquery.js"); ?>
 		<!-- Image Picker -->
 		<?= js_asset("image-picker.js"); ?>
+		<!-- js_bootstrap-->
+		<?= js_asset("bootstrap.js"); ?>
+		
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.css"/>
  	
@@ -47,9 +50,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">Weed</a>
+					<a class="navbar-brand" href="#">หมอยาวัชพืช</a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
+				<?php	/*
 					<ul class="nav navbar-nav">
 						<li class="<?= (($page == 'home') ? 'active' : 'last'); ?>">
 							<a href="<?= base_url('home') ?>">วัชพืช</a>
@@ -69,6 +73,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<a href="<?= base_url('about') ?>">เกี่ยวกับ</a>
 						</li>
 					</ul>
+					*/ ?>
 					<ul class="nav navbar-nav navbar-right">
 					<?php if($name_session == null) { ?>
 						<li class="<?= (($page == 'login') ? 'active' : 'last'); ?>">
