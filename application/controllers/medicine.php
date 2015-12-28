@@ -25,7 +25,7 @@ class Medicine extends CI_Controller {
 
 	public function index() {
 		$data["trade_name"] = $this -> medicine_model -> get_tradeName();
-		print_r($data);
+	//	print_r($data);
 		
 		$this -> load -> view('header');
 		$this -> load -> view("medicine_view", $data);

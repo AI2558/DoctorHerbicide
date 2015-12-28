@@ -26,9 +26,9 @@ class Login extends CI_Controller {
 	public function index() {
 		// print_r($data);
 		$data["url_api_value"] = null;
-		$this -> load -> view('header');
+		//$this -> load -> view('header');
 		$this -> load -> view("login_view", $data);
-		$this -> load -> view('footer');
+		//$this -> load -> view('footer');
 	}
 
 	public function check() {
