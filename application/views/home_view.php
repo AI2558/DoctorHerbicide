@@ -39,27 +39,41 @@
 </script>
 
 <div class="container">
-	<!-- Main component for a primary marketing message or call to action -->
 	<?php if($information != null || $anti!= null) { ?>
 	<div class="jumbotron">
-		<div class=" text-center">
+		<div class="text-center">
 			<h2 class="well"><?= $information[0]['CommonName']; ?></h2>
 			<img class="img-thumbnail" src="<?= base_url('assets') . '/' . $information[0]['path_image'] ?>" width='300' height='300' />
 		</div>
 		<br />		
 		<br />
 		<div class="about col-xs-12 col-sm-12 col-md-6 col-lg-6">
-			<h1>วิธีป้องกัน</h1>
-      <?php $x = explode(".", $information[0]['Prevention']); ?>
-      <?php for($i=1; $i<sizeof($x); $i++)  { ?>
-      <p><?= $i ?>. <?= $x[$i] ?></p>
-      <?php } ?>	</div>
+      <div class="panel panel-info" style="margin: 10px">
+        <div class="panel-heading">
+          <h3 class="panel-title">วิธีป้องกัน</h3>
+        </div>
+        <div class="panel-body">
+          <?php $x = explode('.', $information[0]['Prevention']); ?>
+          <?php for($i=1; $i<sizeof($x); $i++)  { ?>
+          <?= $i ?>. <?= $x[$i] ?>
+          <br /><br />
+          <?php } ?>	
+        </div>
+      </div>
+    </div>
 		<div class="contact col-xs-12 col-sm-12 col-md-6 col-lg-6">
-			<h1>ระบบนิเวศ</h1>
-			<?php $x = explode("-", $information[0]['Ecology']); ?>
-			<?php for($i=1; $i<sizeof($x); $i++)  { ?>
-			<p>- <?= $x[$i] ?></p>
-			<?php } ?>
+      <div class="panel panel-info" style="margin: 10px">
+        <div class="panel-heading">
+          <h3 class="panel-title">ระบบนิเวศ</h3>
+        </div>
+        <div class="panel-body">
+			   <?php $x = explode("-", $information[0]['Ecology']); ?>
+			   <?php for($i=1; $i<sizeof($x); $i++)  { ?>
+			     - <?= $x[$i] ?>
+           <br /><br />
+			   <?php } ?>
+        </div>
+      </div>
 		</div>
 		
 		<br />		
@@ -67,16 +81,15 @@
 		<table id="example" class="display text-center table table-hover" cellspacing="0" border="1" width="100%" style="background-color: #333222">
       <thead>
         <tr>
-            <th class="text-center">รูปภาพ</th>
-            <th class="text-center">ชื่อการค้า</th>
-            <th class="text-center">ชื่อสามัญ</th>
+          <th class="text-center">รูปภาพ</th>
+          <th class="text-center">ชื่อการค้า</th>
+          <th class="text-center">ชื่อสามัญ</th>
         </tr>
       </thead>
       <tbody>
         <?php if($anti != null ) { foreach ($anti as $r) { ?>
           <tr>
-          	<!-- <td><?= $r['group'] ?></td> -->
-          	<td><img onerror="this.src='http://10.2.23.154/weed/assets/images/pill/no_image.png'" class="img-responsive img-rounded center-block img-zoom" src='<?= base_url("assets/images/pill/" . $r["trade_name"]) . ".png" ?>' /></td>
+          	<td><img onerror="this.src='http://158.108.226.58/weed/assets/images/pill/no_image.png'" class="img-responsive img-rounded center-block img-zoom" src='<?= base_url("assets/images/pill/" . $r["trade_name"]) . ".png" ?>' /></td>
           	<td style="vertical-align:middle"><?= $r['trade_name'] ?></td>
           	<td style="vertical-align:middle"><?= $r['common_name'] ?></td>
           </tr>
@@ -85,9 +98,9 @@
     </table>
 	</div>
 	<?php } ?>
+
 	<div class="jumbotron text-center">
 		<form id="weed_form" name="weed_form" action="<?= base_url('home/weed') ?>" method="post" role="form">
-			<!-- <a href="#" onclick="document.location=this.id+'.html';return false;"><img data-img-src="<?= base_url('assets/images/หญ้าดอกขาว.png') ?>" alt="bottle" class="thumbnails" /></a> -->
 			<select id="weed_select" name="weed_select" class="image-picker show-html show-label">
 				<option value=""></option>
 				<?php 
@@ -101,8 +114,7 @@
 				?>
 			</select>
 			<input type='hidden' id="name" name="name" value=""/>
-			<button class="btn btn-primary btn-lg" type="submit" id="weed_submit" name="weed_submit">ยืนยัน</button>
+			<button class=" btn btn-primary btn-lg" type="submit" id="weed_submit" name="weed_submit">ยืนยัน</button>
 		</form>
 	</div>
 </div>
-

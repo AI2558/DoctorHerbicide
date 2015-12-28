@@ -25,7 +25,11 @@ class Report extends CI_Controller {
 
 	public function index() {
 	 	$id_card = $this -> session -> userdata('id_card');
-	 
+	 	
+	 	$get_farmer = $this -> report_model -> get_farmer_all();
+
+	 	// $data['get_farmer'] = $this -> report_model -> get_farmer_name($get_farmer);
+	 	print_r($get_farmer);
 	 	$data['show_table'] = $this -> report_model -> get_table();
 		$data['id'] = $this -> report_model -> get_farmer($id_card);
 		$data['weed'] = $this -> report_model -> get_weed();

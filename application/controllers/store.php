@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Medicine extends CI_Controller {
+class Store extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -19,27 +19,15 @@ class Medicine extends CI_Controller {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this -> session -> set_userdata('page', 'medicine');
-		$this -> load -> model("medicine_model");
+		$this -> session -> set_userdata('page', 'store');
+		$this -> load -> model("store_model");
 	}
 
 	public function index() {
-		$data["trade_name"] = $this -> medicine_model -> get_tradeName();
-		
-		$data["information"] = null;
-		$this -> load -> view('header');
-		$this -> load -> view('medicine_view', $data);
-		$this -> load -> view('footer');
-	}
-
-	public function show() {
-		$name = $this -> input -> post('name');
-		
-		$data["trade_name"] = $this -> medicine_model -> get_tradeName();
-		$data["information"] = $this -> medicine_model -> get_information($name);
+		$data['store'] = $this -> store_model -> get_location();
 
 		$this -> load -> view('header');
-		$this -> load -> view('medicine_view', $data);
+		$this -> load -> view('store_view', $data);
 		$this -> load -> view('footer');
 	}
 }
