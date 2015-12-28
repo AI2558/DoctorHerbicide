@@ -39,66 +39,6 @@
 </script>
 
 <div class="container">
-	<?php if($information != null || $anti!= null) { ?>
-	<div class="jumbotron">
-		<div class="text-center">
-			<h2 class="well"><?= $information[0]['CommonName']; ?></h2>
-			<img class="img-thumbnail" src="<?= base_url('assets') . '/' . $information[0]['path_image'] ?>" width='300' height='300' />
-		</div>
-		<br />		
-		<br />
-		<div class="about col-xs-12 col-sm-12 col-md-6 col-lg-6">
-      <div class="panel panel-info" style="margin: 10px">
-        <div class="panel-heading">
-          <h3 class="panel-title">วิธีป้องกัน</h3>
-        </div>
-        <div class="panel-body">
-          <?php $x = explode('.', $information[0]['Prevention']); ?>
-          <?php for($i=1; $i<sizeof($x); $i++)  { ?>
-          <?= $i ?>. <?= $x[$i] ?>
-          <br /><br />
-          <?php } ?>	
-        </div>
-      </div>
-    </div>
-		<div class="contact col-xs-12 col-sm-12 col-md-6 col-lg-6">
-      <div class="panel panel-info" style="margin: 10px">
-        <div class="panel-heading">
-          <h3 class="panel-title">ระบบนิเวศ</h3>
-        </div>
-        <div class="panel-body">
-			   <?php $x = explode("-", $information[0]['Ecology']); ?>
-			   <?php for($i=1; $i<sizeof($x); $i++)  { ?>
-			     - <?= $x[$i] ?>
-           <br /><br />
-			   <?php } ?>
-        </div>
-      </div>
-		</div>
-		
-		<br />		
-		<br />
-		<table id="example" class="display text-center table table-hover" cellspacing="0" border="1" width="100%" style="background-color: #333222">
-      <thead>
-        <tr>
-          <th class="text-center">รูปภาพ</th>
-          <th class="text-center">ชื่อการค้า</th>
-          <th class="text-center">ชื่อสามัญ</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php if($anti != null ) { foreach ($anti as $r) { ?>
-          <tr>
-          	<td><img onerror="this.src='http://158.108.226.58/weed/assets/images/pill/no_image.png'" class="img-responsive img-rounded center-block img-zoom" src='<?= base_url("assets/images/pill/" . $r["trade_name"]) . ".png" ?>' /></td>
-          	<td style="vertical-align:middle"><?= $r['trade_name'] ?></td>
-          	<td style="vertical-align:middle"><?= $r['common_name'] ?></td>
-          </tr>
-        <?php }} ?>
-      </tbody>
-    </table>
-	</div>
-	<?php } ?>
-
 	<div class="jumbotron text-center">
 		<form id="weed_form" name="weed_form" action="<?= base_url('home/weed') ?>" method="post" role="form">
 			<select id="weed_select" name="weed_select" class="image-picker show-html show-label">
