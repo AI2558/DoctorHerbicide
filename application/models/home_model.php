@@ -45,4 +45,11 @@ class Home_model extends CI_model {
 		return $weed;
 	}
 
+	function get_weed(){
+		$query = $this -> db -> get('t_weed');
+		foreach ($query->result_array() as $row) {
+			$weed[] = $row;
+		}
+		return $weed;
+	}
 }
