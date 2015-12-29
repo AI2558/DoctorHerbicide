@@ -28,10 +28,11 @@ class Store extends CI_Controller {
     }
   }
 
-  public function index() {
-    // $data['store'] = $this -> store_model -> get_store();
-    $store_id = 1;
-
+  public function index(){ 
+    //lazy code should be here
+  }
+  
+  public function r($store_id) {
     $data['medicine'] = $this -> store_model -> get_medicine($store_id);
     $data['medicine_name'] = $this -> store_model -> get_medicine_list();
 
@@ -48,7 +49,6 @@ class Store extends CI_Controller {
 
   public function add() {
     $data = $data = $this -> input -> post();
-    // print_r($data);
     $this -> store_model -> add_medicine($data);
     redirect(base_url('admin/store'));
   }
