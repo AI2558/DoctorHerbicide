@@ -168,10 +168,13 @@
     var store_name = "<?= $medicine[0]['store_name'] ?>"
     var province = "<?= $medicine[0]['province'] ?>"
 
+
     map.Route.add(new longdo.Marker(
       { lon: longitude, lat: latitude },
       { title: store_name, detail: "จังหวัด " + province }
     ));
+    map.location({ lon:longitude, lat:latitude }, true);
+
 
     $('#example').DataTable({
       "info" : false,

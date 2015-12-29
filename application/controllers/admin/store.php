@@ -61,4 +61,16 @@ class Store extends CI_Controller {
     $this -> store_model -> remove_medicine($id);
     redirect(base_url('admin/store') . '/r/' . $id);
   }
+
+  public function add_store() {
+    $this -> load -> view('header');
+    $this -> load -> view('admin/add_store_view');
+    $this -> load -> view('footer');
+  }
+
+  public function check_added() {
+    $data = $data = $this -> input -> post();
+    $this -> store_model -> add_store($data);
+    redirect(base_url('admin/store'));
+  }
 }

@@ -38,6 +38,8 @@ class Login extends CI_Controller {
 		$this -> session -> set_userdata('id_card', $information[0]["citizen_id"]);
 		$this -> session -> set_userdata('province_session', $information[0]["province"]);
 		$this -> session -> set_userdata('name_session', $information[0]["first_name"] . " " . $information[0]["last_name"]);
+		$this -> session -> set_userdata('latitude', $information[0]["latitude"]);
+		$this -> session -> set_userdata('longitude', $information[0]["longitude"]);
 		redirect("home");
 	}
 

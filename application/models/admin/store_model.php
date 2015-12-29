@@ -92,4 +92,14 @@ class Store_model extends CI_model {
     }
     return $store;
   }
+
+  function add_store($data2) {
+    $data = array(
+      'store_name' => $data2['store_name'],
+      'province' => $data2['province'],
+      'latitude' => $data2['latitude'],
+      'longitude' => $data2['longitude']
+    );
+    $this->db->insert('store', $data);
+  }
 }

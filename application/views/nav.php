@@ -19,9 +19,9 @@
         <li class="<?= (($page == 'home') ? 'active' : 'last'); ?>">
           <a href="<?= base_url('home') ?>">วัชพืช</a>
         </li>
-        <li class="<?= (($page == 'medicine') ? 'active' : 'last'); ?>">
+        <!-- <li class="<?= (($page == 'medicine') ? 'active' : 'last'); ?>">
           <a href="<?= base_url('medicine') ?>">ยาฆ่าวัชพืช</a>
-        </li>
+        </li> -->
         <li class="<?= (($page == 'store') ? 'active' : 'last'); ?>">
           <a href="<?= base_url('store') ?>">ตัวแทนจำหน่าย</a>
         </li>

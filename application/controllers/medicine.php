@@ -35,10 +35,28 @@ class Medicine extends CI_Controller {
 
 	public function show() {
 		$name = $this -> input -> post('name');
-		
 		$data["trade_name"] = $this -> medicine_model -> get_tradeName();
 		$data["information"] = $this -> medicine_model -> get_information($name);
+		$data['store'] = $this -> medicine_model -> get_location($data["information"]);
+		$data["user_latitude"] = $this -> session -> userdata('latitude');
+		$data["user_longitude"] = $this -> session -> userdata('longitude');
+		
+		$pick_store = 0;
+		$i=0;
+		foreach ($data['store'] as $r) {
+			$sum_lat = abs($data["user_latitude"] - $r['latitude']);
+			$sum_log = abs($data["user_longitude"] - $r['longitude']);
+			$sum = abs($sum_lat - $sum_log);
+			if($i==0) {
+				$pick_store = $r['id'];
+			} else if($pick_store > $sum) {
+				$pick_store = $r['id'];
+			}
+			$i++;
+		}
 
+		$data['pick_store'] = $this -> medicine_model -> get_nearest($pick_store);
+		$data['medicine'] = $this -> medicine_model -> get_medicine($pick_store);
 		$this -> load -> view('header');
 		$this -> load -> view('nav');
 		$this -> load -> view('medicine_view', $data);

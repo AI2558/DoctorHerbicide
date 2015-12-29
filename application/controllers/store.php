@@ -25,10 +25,20 @@ class Store extends CI_Controller {
 
 	public function index() {
 		$data['store'] = $this -> store_model -> get_location();
-
+		$data['medicine'] = $this -> store_model -> get_medicine();
+		$data['store_medicine'] = $this -> store_model -> get_medicine_in();
 		$this -> load -> view('header');
 		$this -> load -> view('nav');
 		$this -> load -> view('store_view', $data);
 		$this -> load -> view('footer');
 	}
+
+	public function get_medicine() {
+		$store_id = $this->input->post('store_id');
+		$data['store'] = $this -> store_model -> get_location();
+		$data['medicine'] = $this -> store_model -> get_medicine();
+		$data['store_medicine'] = $this -> store_model -> get_medicine_in($store_id);
+		print_r($data);
+		$this -> load -> view('store_view', $data);
+	} 
 }
