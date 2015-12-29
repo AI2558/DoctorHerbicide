@@ -127,7 +127,7 @@
 	<?php //} ?>
 	<div class="jumbotron">
     <div class="text-center">
-      <h2 class="well">ร้านค้าที่ใกล้ที่สุด (<strong><?= $pick_store[0]['store_name'] ?></strong>)</h2>
+      <h2 class="well">ร้านค้าที่ใกล้ที่สุด (<strong><?= $pick_store[0]['store_name'] ?></strong>-<?= $pick_store[0]['province'] ?>)</h2>
     </div>
     <table id="example" class="table table-striped table-bordered table-hover" border="0" cellspacing="0" width="100%">
       <thead>
