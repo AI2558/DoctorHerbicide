@@ -37,6 +37,7 @@ class Store extends CI_Controller {
     $data['medicine_name'] = $this -> store_model -> get_medicine_list();
 
     $this -> load -> view('header');
+    $this -> load -> view('nav');
     $this -> load -> view('admin/store_view', $data);
     $this -> load -> view('footer');
   }

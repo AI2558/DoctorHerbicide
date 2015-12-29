@@ -34,6 +34,7 @@ class Report extends CI_Controller {
 		$data['id'] = $this -> report_model -> get_farmer($id_card);
 		$data['weed'] = $this -> report_model -> get_weed();
 		$this -> load -> view('header');
+		$this -> load -> view('nav');
 		$this -> load -> view('report_view', $data);
 		$this -> load -> view('footer');
 	}

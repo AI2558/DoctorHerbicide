@@ -29,6 +29,7 @@ class Home extends CI_Controller {
 		$data["anti"] = null;
 		$data["information"] = null;
 		$this -> load -> view('header');
+		$this -> load -> view('nav');
 		$this -> load -> view("home_view", $data);
 		$this -> load -> view('footer');
 	}
@@ -41,6 +42,7 @@ class Home extends CI_Controller {
 		$data["anti"] = $this -> home_model -> get_antiName($name);
 		$data["information"] = $this -> home_model -> get_information($name);
 		$this -> load -> view('header');
+		$this -> load -> view('nav');
 		$this -> load -> view("home_view", $data);
 		$this -> load -> view('footer');
 		//////////////////////////////////////////////////////////////////////////////////////

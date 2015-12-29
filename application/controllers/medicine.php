@@ -28,6 +28,7 @@ class Medicine extends CI_Controller {
 		
 		$data["information"] = null;
 		$this -> load -> view('header');
+		$this -> load -> view('nav');
 		$this -> load -> view('medicine_view', $data);
 		$this -> load -> view('footer');
 	}
@@ -39,6 +40,7 @@ class Medicine extends CI_Controller {
 		$data["information"] = $this -> medicine_model -> get_information($name);
 
 		$this -> load -> view('header');
+		$this -> load -> view('nav');
 		$this -> load -> view('medicine_view', $data);
 		$this -> load -> view('footer');
 	}

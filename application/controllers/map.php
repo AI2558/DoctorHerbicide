@@ -27,6 +27,7 @@ class Map extends CI_Controller {
 		// $data["weed_name"] = $this -> home_model -> get_weed_name();
 		// print_r($data);
 		$this -> load -> view('header');
+		$this -> load -> view('nav');
 		$this -> load -> view("map_view");
 		$this -> load -> view('footer');
 	}
