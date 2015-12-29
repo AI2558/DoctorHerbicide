@@ -88,13 +88,6 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-2 control-label">ชื่อการค้า</label>
-            <div class="col-sm-4">
-              <input type="text" class="form-control" id="market_name" name="market_name" placeholder="ชื่อการค้า" readonly="" />
-            </div>
-          </div>
-          
-          <div class="form-group">
             <label class="col-sm-2 control-label">ราคา</label>
             <div class="col-sm-4">
               <div class="input-group">
