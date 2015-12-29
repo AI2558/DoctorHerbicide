@@ -9,18 +9,29 @@ class Store_model extends CI_model {
     $this -> load -> database();
   }
 
-  function get_medicine() {
-    $this -> db -> select('medicine.id as med_id, medicine.name, medicine.common_name, store_medicine.id, store_medicine.price, store.id as store_id');
+  function get_medicine($id) {
+    $this -> db -> select('medicine.id as med_id, medicine.name, medicine.common_name, store_medicine.id, store_medicine.price, store.id as store_id, store.store_name, store.province, store.latitude, store.longitude');
     $this -> db -> from('store');
     $this -> db -> join('store_medicine', 'store_medicine.store_id = store.id');
     $this -> db -> join('medicine', 'medicine.id = store_medicine.medicine_id');
-    // $this -> db -> join('weed_resistance', 'weed_resistance.trade_name = medicine.name');
+    $this -> db -> where('store_id', $id);
     $query = $this -> db -> get();
     $store_medicine = null;
     foreach ($query->result_array() as $row) {
       $store_medicine[] = $row;
     }
-    return $store_medicine;
+    if($store_medicine != null) {
+      return $store_medicine;
+    } else {
+      $this -> db -> select('store.id as store_id, store.store_name, store.province, store.latitude, store.longitude');
+      $this -> db -> from('store');
+      $this -> db -> where('store.id', $id);
+      $query = $this -> db -> get();
+      foreach ($query->result_array() as $row) {
+        $store_medicine[] = $row;
+      }
+      return $store_medicine;
+    }
   }
 
   function get_medicine_list() {
@@ -69,5 +80,16 @@ class Store_model extends CI_model {
 
   function remove_medicine($id) {
     $this->db->delete('store_medicine', array('id' => $id)); 
+  }
+
+  function get_all_store() {
+    $this -> db -> from('store');
+    $query = $this -> db -> get();
+    $medicine = null;
+    $store = Array();
+    foreach ($query->result_array() as $row) {
+      $store[] = $row;
+    }
+    return $store;
   }
 }

@@ -29,15 +29,18 @@ class Store extends CI_Controller {
   }
 
   public function index(){ 
-    //lazy code should be here
+    $data['store'] = $this -> store_model -> get_all_store();
+
+    $this -> load -> view('header');
+    $this -> load -> view('admin/all_store_view', $data);
+    $this -> load -> view('footer');
   }
   
   public function r($store_id) {
+    // print_r($store_id);
     $data['medicine'] = $this -> store_model -> get_medicine($store_id);
     $data['medicine_name'] = $this -> store_model -> get_medicine_list();
-
     $this -> load -> view('header');
-    $this -> load -> view('nav');
     $this -> load -> view('admin/store_view', $data);
     $this -> load -> view('footer');
   }

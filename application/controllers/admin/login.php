@@ -39,7 +39,7 @@ class Login extends CI_Controller {
 
     if($information != null) {
       $this -> session -> set_userdata('admin_session', $information[0]["first_name"]);
-      redirect(base_url("admin/home"));
+      redirect(base_url("admin/store"));
     } else {
       $data['err'] = "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง";
 

@@ -15,7 +15,10 @@
 </style>
 <div class="container">
   <div class="jumbotron">
-    <h1>ชื่อสหกร<small>อะไรดีน้า</small></h1>
+  <div class="row">
+    <h1><?= $medicine[0]['store_name'] ?><small>(<?= $medicine[0]['province'] ?>)</small></h1>
+    <a href="<?= base_url('admin/store') ?>"><button class="btn btn-primary">ย้อนกลับ</button></a>
+  </div>
   </div>
     <div class="row">
       <div class="col-sm-4 box9">
@@ -26,19 +29,19 @@
         <table id="example" class="table table-striped table-bordered table-hover" border="0" cellspacing="0" width="100%">
           <thead>
               <tr>
-                  <th>ลำดับ</th>
-                  <th>ชื่อสามัญ</th>
-                  <th>ชื่อการค้า</th>
-                  <th>ราคา</th>
-                  <th>แก้ไข</th>
-                  <th>ลบ</th>
-                  <th hidden>store_med</th>
-                  <th hidden>med</th>
+                <th>ลำดับ</th>
+                <th>ชื่อสามัญ</th>
+                <th>ชื่อการค้า</th>
+                <th>ราคา</th>
+                <th>แก้ไข</th>
+                <th>ลบ</th>
+                <th hidden>store_med</th>
+                <th hidden>med</th>
               </tr>
           </thead>
           <tbody>
           <?php
-            if ($medicine > 0) {
+            if ($medicine > 0 && isset($medicine[0]['common_name'])) {
               $i=1;
               foreach ($medicine as $r) {
                 echo "<tr id='" . $r['id'] . "' >";
@@ -51,7 +54,7 @@
                 } 
                 echo "<td>{$r['price']}</td>";
                 echo "<td align='center'>" . "<a class='mouse_hover edit'><img src=" . base_url('assets/images/icon/setting.png') . " data-toggle='modal' data-target='#myModal'></td>";
-                echo "<td align='center'>" . "<a href='" . base_url('admin/store/remove') . '/' . $r['id'] . "' class='mouse_hover remove'><img src=" . base_url('assets/images/icon/remove.png') . "></td>";
+                echo "<td align='center'>" . "<a href='" . base_url('admin/store/remove') . '/' . $r['store_id'] . "' class='mouse_hover remove'><img src=" . base_url('assets/images/icon/remove.png') . "></td>";
                 echo "<td align='center' style='max-width:300px; width: 30px' hidden>{$r['id']}</td>"; 
                 echo "<td align='center' style='max-width:300px; width: 30px' hidden>{$r['med_id']}</td>";   
                 echo "</tr>";
@@ -160,12 +163,14 @@
     map = new longdo.Map({ 
       placeholder: document.getElementById('map') 
     });
+    var longitude = "<?= $medicine[0]['longitude'] ?>"
+    var latitude = "<?= $medicine[0]['latitude'] ?>"
+    var store_name = "<?= $medicine[0]['store_name'] ?>"
+    var province = "<?= $medicine[0]['province'] ?>"
 
-    map.location({ lon:100.0104824, lat:14.40488213 }, true);
     map.Route.add(new longdo.Marker(
-      { lon: 100.0104824, lat: 14.40488213 },
-      { title: 'สหกรA', detail: 'detail' },
-      { zoom: '15'}
+      { lon: longitude, lat: latitude },
+      { title: store_name, detail: "จังหวัด " + province }
     ));
 
     $('#example').DataTable({
