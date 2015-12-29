@@ -74,7 +74,11 @@
 			<br>
 			</div>
 			<div class="container">
-				<?= $name['CommonName']  ?>
+				<form id="weed_form" name="weed_form" action="<?= base_url('home2/weed') ?>" method="post" role="form">
+						
+						<input type='hidden' id="name" name="name" value="<?= $name['CommonName']  ?>"/>
+					<button class=" btn btn-primary btn-lg" type="submit" id="weed_submit" name="weed_submit"><?= $name['CommonName']  ?></button>
+				</form>
 			</div>
 			</div>
 			<br>

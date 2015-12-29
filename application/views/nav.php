@@ -11,7 +11,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">หมอยาวัชพืช</a>
+      <a class="navbar-brand" href="<?= base_url('home') ?>">หมอยาวัชพืช</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
     
