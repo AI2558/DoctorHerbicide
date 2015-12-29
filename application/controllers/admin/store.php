@@ -45,17 +45,17 @@ class Store extends CI_Controller {
   public function edit() {
     $data = $this -> input -> post();
     $this -> store_model -> set_medicine($data);
-    redirect(base_url('admin/store'));
+    redirect(base_url('admin/store') . '/r/' . $data['store_id']);
   }
 
   public function add() {
     $data = $data = $this -> input -> post();
     $this -> store_model -> add_medicine($data);
-    redirect(base_url('admin/store'));
+    redirect(base_url('admin/store') . '/r/' . $data['store_id']);
   }
 
   public function remove($id) {
     $this -> store_model -> remove_medicine($id);
-    redirect(base_url('admin/store'));
+    redirect(base_url('admin/store') . '/r/' . $id);
   }
 }

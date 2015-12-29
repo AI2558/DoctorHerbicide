@@ -98,6 +98,7 @@
           </div>
           <input type="text" id="id_edit" name="id_edit" hidden>
           <input type="text" id="med_id_edit" name="med_id_edit" hidden>
+          <input type="text" id="store_id" name="store_id" value="<?= $medicine[0]['store_id'] ?>" hidden>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
