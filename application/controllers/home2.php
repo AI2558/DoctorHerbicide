@@ -39,6 +39,7 @@ class Home2 extends CI_Controller {
 		//////////////////////////////////////////////////////////////////////////////////////
 		//$weed = $this -> input -> post('weed_select');
 		$name = $this -> input -> post('name');
+		$data['noti'] = null;
 		$data["weed_name"] = $this -> home2_model -> get_weed_name();
 		$data["weed"] = $this -> home2_model -> get_weed();
 		$data["anti"] = $this -> home2_model -> get_antiName($name);
@@ -49,5 +50,24 @@ class Home2 extends CI_Controller {
 		$this -> load -> view('footer');
 		//////////////////////////////////////////////////////////////////////////////////////
 		// redirect("home");
+	}
+
+	public function send_report() {
+		$weed_name = $this -> input -> post('name_report');
+		$citizen_id = $this -> session -> userdata('id_card');
+		$province = $this -> session -> userdata('province_session');
+		$this -> home2_model -> add_report($weed_name, $citizen_id, $province);
+
+		$name = $weed_name;
+		$data['noti'] = "รายงานสำเร็จ! ขอบคุณที่รายงาน";
+		$data["weed_name"] = $this -> home2_model -> get_weed_name();
+		$data["weed"] = $this -> home2_model -> get_weed();
+		$data["anti"] = $this -> home2_model -> get_antiName($name);
+		$data["information"] = $this -> home2_model -> get_information($name);
+		$this -> load -> view('header');
+		$this -> load -> view('nav');
+		$this -> load -> view("home2_view", $data);
+		$this -> load -> view('footer');
+		// print_r($name);
 	}
 }

@@ -14,6 +14,18 @@
 		$("select").imagepicker({
 			show_label : true
 		});
+    var noti = "<?= $noti ?>"
+    if(noti !== '') {
+      $("#result").html('<div class="alert alert-success"><button type="button" class="close">×</button>' + noti + '</div>');
+        window.setTimeout(function() {
+          $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                    $(this).remove(); 
+                });
+            }, 5000);
+          $('.alert .close').on("click", function(e){
+                $(this).parent().fadeTo(500, 0).slideUp(500);
+             });
+    }
 
 		$('#example').DataTable({
 			"ordering" : false,
@@ -40,13 +52,17 @@
 
 <div class="container">
 
-
+  
 	<?php //if($information != null || $anti!= null) { ?>
 	<div class="jumbotron">
+    <center><div id="result"></div></center>
 		<div class="text-center">
-			<h2 class="well"><?= $information[0]['CommonName']; ?></h2>
-			<img class="img-thumbnail" src="<?= base_url('assets') . '/' . $information[0]['path_image'] ?>" width='300' height='300' />
-		</div>
+      <form action="<?= base_url('home2/send_report') ?>" method="post" role="form">
+		    <h2 class="well"><?= $information[0]['CommonName']; ?>   <button class="btn btn-info">รายงานวัชพืช</button></h2>
+        <input id="name_report" name="name_report" value=<?= $information[0]['CommonName'] ?> hidden />
+		    <img class="img-thumbnail" src="<?= base_url('assets') . '/' . $information[0]['path_image'] ?>" width='300' height='300' />
+      </form>
+    </div>
 		<br />		
 		<br />
 		<div class="about col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -80,7 +96,7 @@
 		
 		<br />		
 		<br />
-		<table id="example" class="display text-center table table-hover" cellspacing="0" border="1" width="100%" style="background-color: #333222">
+		<table id="example" class="display text-center table table-hover" cellspacing="0" border="1" width="100%" style="background-color: #ABCDEF">
       <thead>
         <tr>
           <th class="text-center">รูปภาพ</th>
@@ -98,7 +114,7 @@
           	<td style="vertical-align:middle">
           		<form id="med_form" name="med_form" action="<?= base_url('medicine/show') ?>" method="post" role="form">
           			<input type='hidden' id="name" name="name" value="<?= $r['trade_name'] ?>"/>
-					<button class="btn btn-primary btn-lg" type="submit" id="weed_submit" name="weed_submit">ดูรายละเอียด</button>
+					      <button class="btn btn-primary btn-lg" type="submit" id="weed_submit" name="weed_submit">ดูรายละเอียด</button>
           		</form>
           	</td> 
           </tr>

@@ -44,7 +44,8 @@ class Home2_model extends CI_model {
 		}
 		return $weed;
 	}
-	function get_weed(){
+
+	function get_weed() {
 		$query = $this -> db -> get('t_weed');
 		foreach ($query->result_array() as $row) {
 			$weed[] = $row;
@@ -52,4 +53,13 @@ class Home2_model extends CI_model {
 		return $weed;
 	}
 
+	function add_report($weed_id, $citizen_id, $province) {
+		$data = array(
+    	'citizen_id' => $citizen_id,
+      'province' => $province,
+      'weed_name' => $weed_id,
+      'count' => 1
+    );
+    $this->db->insert('report', $data);
+	}
 }

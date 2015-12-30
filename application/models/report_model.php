@@ -57,6 +57,19 @@ class Report_model extends CI_model {
 		return $table;
 	} 
 
+	function get_people_table() {
+		$this -> db -> select('farmer.first_name, farmer.last_name, report.citizen_id, report.province, weed_name');
+		$this -> db -> select_sum('count');
+		$this -> db -> from('report');
+		$this -> db -> join('farmer', 'farmer.citizen_id = report.citizen_id');
+		$this -> db -> group_by('farmer.first_name, farmer.last_name, weed_name');
+		$query = $this -> db -> get();
+		foreach ($query->result_array() as $row) {
+			$table[] = $row;
+		}
+		return $table;
+	}
+
 	function get_province($id) {
 		$this -> db -> from('farmer');
 		$this -> db -> where('citizen_id', $id);

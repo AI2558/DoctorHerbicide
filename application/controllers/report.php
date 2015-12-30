@@ -28,9 +28,8 @@ class Report extends CI_Controller {
 	 	
 	 	$get_farmer = $this -> report_model -> get_farmer_all();
 
-	 	// $data['get_farmer'] = $this -> report_model -> get_farmer_name($get_farmer);
-	 	// print_r($get_farmer);
 	 	$data['show_table'] = $this -> report_model -> get_table();
+	 	$data['show_people_table'] = $this -> report_model -> get_people_table();
 		$data['id'] = $this -> report_model -> get_farmer($id_card);
 		$data['weed'] = $this -> report_model -> get_weed();
 		$this -> load -> view('header');
@@ -46,7 +45,7 @@ class Report extends CI_Controller {
 
 		$id_card = $this -> session -> userdata('id_card');
 		$province = $this -> session -> userdata('province_session');
-		$this -> report_model -> delete_report($id_card);
+		// $this -> report_model -> delete_report($id_card);
 
 		foreach ($weed as $r) {
 			$this -> report_model -> insert_report($id_card, $r, $province);

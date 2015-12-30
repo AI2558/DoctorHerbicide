@@ -12,6 +12,10 @@
     </div>
     <?php } ?>  
     <button type="submit" class="btn btn-lg btn-primary btn-block">เข้าสู่ระบบ</button>
+    <br />
+    <div class="text-center">
+      หรือ<a href="<?= base_url('home') ?>">บุคลคนทั่วไป</a>
+    </div>
   </form>
-        
+  
 </div>
