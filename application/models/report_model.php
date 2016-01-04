@@ -89,4 +89,19 @@ class Report_model extends CI_model {
 		}
 		return $farmer;
 	}
+
+	public function chart() {
+		$this -> db -> select('farmer.first_name, farmer.last_name, report.citizen_id, report.province, weed_name');
+		$this -> db -> select_sum('count');
+		$this -> db -> from('report');
+		$this -> db -> join('farmer', 'farmer.citizen_id = report.citizen_id');
+		$this -> db -> group_by('weed_name','report.province');
+		// $this -> db -> order_by('count', 'ASC');
+		// $this -> db -> limit(5);
+		$query = $this -> db -> get();
+		foreach ($query->result_array() as $row) {
+			$farmer[] = $row;
+		}
+		return $farmer;
+	}
 }

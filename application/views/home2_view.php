@@ -49,7 +49,11 @@
 		});
 	});
 </script>
-
+<?php
+$json = file_get_contents("http://158.108.230.232:8080/CropCalendarServer/api/med/1");
+$obj = json_decode($json, true);
+$ontology_result = explode(',', $obj['medicine']);
+?>
 <div class="container">
 
   
@@ -109,7 +113,14 @@
         <?php if($anti != null ) { foreach ($anti as $r) { ?>
           <tr>
           	<td><img onerror="this.src='<?= base_url("assets/images/pill/no_image").".png" ?>';" class="img-responsive img-rounded center-block img-zoom" src='<?= base_url("assets/images/pill/" . $r["trade_name"]) . ".png" ?>' /></td>		
-          	<td style="vertical-align:middle"><?= $r['trade_name'] ?></td>
+          	<?php for($i=0; $i<sizeof($ontology_result); $i++) { 
+              if($ontology_result[$i] == $r['trade_name']) {
+            ?>
+                <td style="vertical-align:middle"><?= $r['trade_name'] ?></td>
+            <?php 
+              }
+            } 
+            ?>
           	<td style="vertical-align:middle"><?= $r['common_name'] ?></td>
           	<td style="vertical-align:middle">
           		<form id="med_form" name="med_form" action="<?= base_url('medicine/show') ?>" method="post" role="form">

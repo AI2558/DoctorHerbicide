@@ -64,7 +64,7 @@
   function resize() {
     var style = document.getElementById('map').style;
         style.height = (window.innerHeight - 68) + 'px';
-        style.width = (window.innerWidth - 270) + 'px';
+        style.width = (window.innerWidth - 300) + 'px';
         
         var style = document.getElementById('result').style;
         style.height = (window.innerHeight - 68) + 'px';
@@ -77,7 +77,6 @@
     });
   });
 </script>
-
 <div class="container">
 	<?php //if($information != null) { ?>
 	<div class="jumbotron">

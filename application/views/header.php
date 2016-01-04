@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.css"/>
 
 		<!-- don't forget to change key -->
- 		<script src="http://api.longdo.com/map/?key=612b42f7cde55f7577cf077d729321b8"></script>
+ 		<script src="http://api.longdo.com/map/?key=00410fdfc5efa66c94f340b3cfed5bd5"></script>
 
 		<script type="text/javascript" src="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.js"></script>
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>

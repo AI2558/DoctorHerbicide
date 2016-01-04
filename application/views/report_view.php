@@ -14,7 +14,6 @@
       "bLengthChange" : false
     });
   });
-
   var counter = 1;
   var limit = 25;
   var i=2;
@@ -31,7 +30,52 @@
     }
   }
 </script>
+<script type="text/javascript"
+  src="https://www.google.com/jsapi?autoload={
+    'modules':[{
+      'name':'visualization',
+      'version':'1',
+      'packages':['corechart']
+    }]
+  }">
+</script>
+
+<script type="text/javascript">
+  google.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+    var graph_show = <?php echo json_encode($chart, JSON_PRETTY_PRINT) ?>;
+    //alert(graph_show['0']['count'])
+    // alert("<?= $chart[0]['count'] ?>")
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'วัชพืช');
+    data.addColumn('number', 'จำนวนทั้งหมดที่พบ');
+    // data.addColumn('number', graph_show[2]['province']);
+    // data.addColumn('number', graph_show[3]['province']);
+    // data.addColumn('number', graph_show[4]['province']);
+    for(i=0; i<graph_show.length; i++) {
+      data.addRows([[graph_show[i]['weed_name'], parseInt(graph_show[i]['count'])]]);
+    }
+
+    var options = {
+      title: 'วัชพืชที่พบมากที่สุด',
+      //curveType: 'function',
+      width: 1000,
+      height: 500,
+      bar: {groupWidth: "95%"},
+      legend: { position: 'none' }
+    };
+
+    var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_values'));
+
+    chart.draw(data, options);
+
+    
+  }
+</script>
+
 <div class="container">
+  <center><div id="columnchart_values" style="width: 1000px; height: 500px"></div></center>
 	<div class="jumbotron">
   <h1 class="text-center">วัชพืชที่พบ<small>ในแต่ละจังหวัด</small></h1><br />
     <table id="example" class="display text-center table table-hover" cellspacing="0" border="1" width="100%" style="background-color: #ABCDEF">
@@ -53,7 +97,6 @@
       </tbody>
     </table>
   </div>
-
   <div class="jumbotron">
     <h1 class="text-center">รายชื่อชาวนา<small>ที่รายงานวัชพืช</small></h1><br />
     <table id="example2" class="display text-center table table-hover" cellspacing="0" border="1" width="100%" style="background-color: #ABCDEF">
